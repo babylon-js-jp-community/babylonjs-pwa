@@ -31,6 +31,7 @@ async function main() {
 
     const light = new BABYLON.DirectionalLight("MainLight", new BABYLON.Vector3(0, -15, 12), scene);
     const camera = new BABYLON.ArcRotateCamera("MainCamera", 0, Math.PI / 4, 10, BABYLON.Vector3.Zero(), scene);
+    camera.attachControl(true);
     const skyMat = new BABYLON.SkyMaterial("SkyMat", scene);
     skyMat.azimuth = 0.25;
     skyMat.inclination = 0.15;
@@ -61,7 +62,7 @@ async function main() {
     });
 }
 
-document.addEventListener("load", main);
+window.addEventListener("load", main);
         </script>
     </body>
 </html>

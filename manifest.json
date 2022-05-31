@@ -1,0 +1,21 @@
+{
+    "background_color": "#ffffff",
+    "description": "PWA Sample with Babylon.js",
+    "dir": "ltr",
+    "display": "fullscreen",
+    "name": "Babylon.js PWA Sample",
+    "orientation": "landscape",
+    "scope": "/babylonjs-pwa",
+    "short_name": "BJSPWA",
+    "start_url": "/babylonjs-pwa",
+    "theme_color": "#ffffff",
+    "categories": [],
+    "screenshots": [],
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "type": "image/x-icon"
+        }
+    ],
+    "shortcuts": []
+}
