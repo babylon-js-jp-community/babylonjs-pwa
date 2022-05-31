@@ -2,6 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="utf-8"/>
+        <meta name="theme-color" content="#FFFFFF"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <title>Babylon.js PWA Sample</title>
         <style>
             html, body {
@@ -62,6 +64,9 @@ async function main() {
     });
 }
 
+if (navigator.serviceWorker) {
+    navigator.serviceWorker.register("/babylonjs-pwa/sw.js");
+}
 window.addEventListener("load", main);
         </script>
     </body>
