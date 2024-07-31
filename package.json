@@ -1,6 +1,7 @@
 {
-  "name": "test-vite",
+  "name": "babylonjs-pwa",
   "private": true,
+  "type": "module",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -9,14 +10,13 @@
     "deploy": "gh-pages -d docs"
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0",
-    "typescript": "^4.5.4",
-    "vite": "^2.9.9",
-    "vite-plugin-pwa": "^0.12.0"
+    "gh-pages": "^6.1.1",
+    "typescript": "^5.5.4",
+    "vite": "^5.3.5",
+    "vite-plugin-pwa": "^0.20.1"
   },
   "dependencies": {
-    "@babylonjs/core": "^5.8.2",
-    "@babylonjs/materials": "^5.8.2",
-    "pepjs": "^0.5.3"
+    "@babylonjs/core": "^7.17.2",
+    "@babylonjs/materials": "^7.17.2"
   }
 }

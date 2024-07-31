@@ -1,16 +1,22 @@
-import { registerSW } from "virtual:pwa-register";
-import * as BABYLON from '@babylonjs/core';
+import { ArcRotateCamera } from "@babylonjs/core/Cameras/arcRotateCamera";
+import { Engine } from "@babylonjs/core/Engines/engine";
+import { DirectionalLight } from "@babylonjs/core/Lights/directionalLight";
+import { CascadedShadowGenerator } from "@babylonjs/core/Lights/Shadows/cascadedShadowGenerator";
+import "@babylonjs/core/Lights/Shadows/shadowGeneratorSceneComponent";
+import { Vector3 } from "@babylonjs/core/Maths/math.vector";
+import { MeshBuilder } from "@babylonjs/core/Meshes/meshBuilder";
+import "@babylonjs/core/Rendering/depthRendererSceneComponent";
+import { Scene } from "@babylonjs/core/scene";
 import { SkyMaterial } from '@babylonjs/materials';
-
-import "pepjs";
+import { registerSW } from "virtual:pwa-register";
 
 async function main() {
     const canvas = document.getElementById("renderCanvas") as HTMLCanvasElement;
-    const engine = new BABYLON.Engine(canvas, true);
-    const scene = new BABYLON.Scene(engine);
+    const engine = new Engine(canvas, true);
+    const scene = new Scene(engine);
 
-    const light = new BABYLON.DirectionalLight("MainLight", new BABYLON.Vector3(0, -15, 12), scene);
-    const camera = new BABYLON.ArcRotateCamera("MainCamera", 0, Math.PI / 4, 10, BABYLON.Vector3.Zero(), scene);
+    const light = new DirectionalLight("MainLight", new Vector3(0, -15, 12), scene);
+    const camera = new ArcRotateCamera("MainCamera", 0, Math.PI / 4, 10, Vector3.Zero(), scene);
     camera.attachControl(true);
     const skyMat = new SkyMaterial("SkyMat", scene);
     skyMat.azimuth = 0.25;
@@ -21,16 +27,16 @@ async function main() {
     skyMat.rayleigh = 1.2;
     skyMat.turbidity = 7.0;
     skyMat.cullBackFaces = false;
-    const skyMesh = BABYLON.MeshBuilder.CreateBox("SkyBox", { size: 1000, updatable: false }, scene);
+    const skyMesh = MeshBuilder.CreateBox("SkyBox", { size: 1000, updatable: false }, scene);
     skyMesh.infiniteDistance = true;
     skyMesh.material = skyMat;
 
-    const sphereMesh = BABYLON.MeshBuilder.CreateSphere("SphereMesh", {diameter: 2, segments: 32}, scene);
+    const sphereMesh = MeshBuilder.CreateSphere("SphereMesh", {diameter: 2, segments: 32}, scene);
     sphereMesh.position.y = 1;
-    const ground = BABYLON.MeshBuilder.CreateTiledGround("GroundMesh", { xmin: -10, zmin: -10, xmax: 10, zmax: 10 }, scene);
+    const ground = MeshBuilder.CreateTiledGround("GroundMesh", { xmin: -10, zmin: -10, xmax: 10, zmax: 10 }, scene);
     ground.receiveShadows = true;
 
-    const shadow = new BABYLON.CascadedShadowGenerator(1024, light);
+    const shadow = new CascadedShadowGenerator(1024, light);
     shadow.autoCalcDepthBounds = true;
     shadow.addShadowCaster(sphereMesh);
 
@@ -43,5 +49,5 @@ async function main() {
 }
 
 // entry
-registerSW();
+registerSW({ immediate: true });
 window.addEventListener("load", main);

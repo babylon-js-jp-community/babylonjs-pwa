@@ -5,6 +5,7 @@ export default defineConfig({
     base: "/babylonjs-pwa/",
     plugins: [
         VitePWA({
+            registerType: "autoUpdate",
             includeAssets: [
                 "android-chrome-192x192.png",
                 "android-chrome-512x512.png",
@@ -23,9 +24,9 @@ export default defineConfig({
                 "safari-pinned-tab.svg",
             ],
             manifest: {
-                name: "PWA Sample with Babylon.js 5",
+                name: "PWA Sample with Babylon.js",
                 short_name: "BJS_PWA",
-                description: "Progressive Web Apps sample with Babylon.js 5",
+                description: "Progressive Web Apps sample with Babylon.js",
                 theme_color: "#FFFFFF",
                 icons: [
                     {
@@ -48,7 +49,4 @@ export default defineConfig({
             },
         }),
     ],
-    build: {
-        outDir: "docs",
-    },
 });
